@@ -1,0 +1,37 @@
+# Options -MultiViews is necessary to prevent problems when using a controller named "index" and 
+# having a root index.php more here: http://httpd.apache.org/docs/2.2/content-negotiation.html
+Options -MultiViews
+
+# Prevent people from looking directly into folders
+Options -Indexes
+
+# Activate URL rewriting
+RewriteEngine On
+
+# Rewrite all non-secure requests except localhost and loopback
+# See http://stackoverflow.com/questions/33025559/apache-rewriterule-everything-except-localhost-and-loopback
+RewriteCond %{HTTP_HOST} !^localhost [NC]
+RewriteCond %{REMOTE_ADDR} !^127\.0\.0\.1$
+RewriteCond %{HTTPS} !=on
+RewriteRule ^/?(.*) https://{HTTP_HOST}/$1 [R=301,L]
+
+# Now, deal with the url rewriting for our app front controller 
+# like myproject.com/controller/action/1/2/3
+
+# If the following conditions are true, then rewrite the URL:
+# If the requested filename is not a directory,
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# ... and if the requested filename is not a regular file that exists,
+RewriteCond %{REQUEST_FILENAME} !-f
+
+# ... and if the requested filename is not a symbolic link,
+RewriteCond %{REQUEST_FILENAME} !-l
+
+# ... then rewrite the URL in the following way:
+# Take the whole request filename and provide it as the value of a
+# "url" query parameter to index.php. Append any query string from
+# the original URL as further query parameters (QSA), and stop
+# processing this .htaccess file (L).
+
+RewriteRule ^(.+)$ index.php?url=$1 [QSA,L]

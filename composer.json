@@ -1,0 +1,22 @@
+{
+    "name": "larsgrau/tools",
+    "description": "No more silly tasks",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Lars Grau",
+            "email": "lars@grau.com"
+        }
+    ],
+    "require": {
+    	"ajt/guzzle-toggl": "^0.12.0"
+    },
+    "autoload":
+    {
+        "psr-4":
+        {
+            "Jiyuu\\" : "app/"
+        }
+    }
+}

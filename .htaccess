@@ -1,0 +1,5 @@
+# This file is not needed if you set up your webserver / vhosts correctly
+# For fallback reasons (if you don't route your vhost to /public), it will stay here
+
+RewriteEngine on
+RewriteRule ^(.*) public/$1 [L]

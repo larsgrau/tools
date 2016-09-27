@@ -13,7 +13,7 @@ RewriteEngine On
 RewriteCond %{HTTP_HOST} !^localhost [NC]
 RewriteCond %{REMOTE_ADDR} !^127\.0\.0\.1$
 RewriteCond %{HTTPS} !=on
-RewriteRule ^/?(.*) https://{HTTP_HOST}/$1 [R=301,L]
+RewriteRule ^/?(.*) https://%{HTTP_HOST}/$1 [R=301,L]
 
 # Now, deal with the url rewriting for our app front controller 
 # like myproject.com/controller/action/1/2/3

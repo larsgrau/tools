@@ -7,7 +7,7 @@ class TogglController extends Controller
 		$this->view('toggl/index');
 	}
 
-    public function projects($api_key = '')
+	public function workspaces($api_key = '')
 	{
 
 		// Load model
@@ -15,29 +15,50 @@ class TogglController extends Controller
 		
 		// Grab API key and update model		
 		if (isset($_GET['toggl_api_key']) AND !empty($_GET['toggl_api_key'])) {
+  
             // Set API key
     		$toggl->setApiKey($_GET['toggl_api_key']);
 
             // Initiate the Toggl API client
             $toggl->initiateCLient();			
 
-            // Get the workspace id
+            // Get all workspaces
             $workspaces = $toggl->getWorkspaces();
-            if (count($workspaces) > 1) {
-                die('Error: Multiple workspaces (not implemented yet)');
-            } else {
-                $workspace = $workspaces[0]['id'];                         
-            }
+
+            $this->view('toggl/workspaces', ['toggl_api_key' => $toggl->getApiKey(), 'workspaces' => $workspaces]);
+        } else {
+	    	die ("No API key given");
+		}
+	}
+
+    public function projects($api_key = '', $workspace_id = '')
+	{
+
+		// Load model
+		$toggl = $this->model('Toggl');
+		
+		// Grab API key and update model		
+		if (isset($api_key) AND !empty($api_key)) {
+            // Set API key
+    		$toggl->setApiKey($api_key);
+
+            // Initiate the Toggl API client
+            $toggl->initiateCLient();			
+
+            if (isset($workspace_id) AND !empty($workspace_id)) {
             
-            // Get all clients             
-            //$clients = $toggl->getClients();
-            $clients = [];
+                // Get all clients             
+                //$clients = $toggl->getClients();
+                $clients = [];
 
-            // Get all projects in this workspace
-            $projects = $toggl->getProjects($workspaces[0]['id']);
+                // Get all projects in this workspace
+                $projects = $toggl->getProjects((int) $workspace_id);
 
-            // Load view
-            $this->view('toggl/projects', ['toggl_api_key' => $toggl->getApiKey(), 'toggl_workspace_id' => $workspace, 'toggl_clients' => $clients, 'toggl_projects' => $projects]);
+                // Load view
+                $this->view('toggl/projects', ['toggl_api_key' => $toggl->getApiKey(), 'toggl_workspace_id' => $workspace_id, 'toggl_clients' => $clients, 'toggl_projects' => $projects]);
+            } else {
+                die ("No workspace id given");
+            }
 		} else {
 	    	die ("No API key given");
 		}

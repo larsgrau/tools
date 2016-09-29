@@ -7,7 +7,8 @@
 <?php 
 
     foreach($data['toggl_entries']['data'] as $entry) {
-        print('<tr><td>' . $entry['user'] . '</td><td>' . $entry['dur'] . '</td><td>' . $entry['description'] . '</td></tr>');
+        $duration = date("h:i:s", $entry['dur'] / 1000);
+        print('<tr><td>' . $entry['user'] . '</td><td>' . $duration . '</td><td>' . $entry['description'] . '</td></tr>');
     }
 
 ?>

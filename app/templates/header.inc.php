@@ -18,4 +18,5 @@
     <div class="navigation">
         <a href="<?php echo URL; ?>">tools.larsgrau.com</a>
         <a href="<?php echo URL; ?>toggl/">Time Tracking</a>
+        <a href="<?php echo URL; ?>banking/">Online Banking</a>
     </div>

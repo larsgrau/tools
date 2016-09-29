@@ -1,6 +1,65 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
 body {
-    font-family: Arial, sans-serif;
-    font-size: 14px;
+	line-height: 1;
+}
+ol, ul {
+	list-style: disc;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+/* Custom CSS
+ *
+ */
+
+
+body {
+  font: 400 14px/1.2 Helvetica, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+    font-size: 12px;
     color: #454545;
 }
 
@@ -9,6 +68,46 @@ body {
     height: 200px;
     /* Integrate a real image encoded via base64 text, an awesome technology! check https://varvy.com/pagespeed/base64-images.html for more info */
 }
+
+h1.hero {
+	font-size: 17.0em;
+	font-weight: bold;
+	margin: 0;
+	padding: 0;
+}
+
+h1 {
+	font-size: 3.0em;
+	font-weight: bold;
+	margin: 1.0em 0;
+	padding: 0;}
+
+h2 {
+	font-size: 1.7em;
+	font-weight: bold;
+}
+
+p, ul, table, form {
+    margin: 1.0em 0;
+}
+
+li {
+    margin-left: 1.2em;
+}
+
+.footer {
+    font-size: 0.8em;
+}
+
+
+fieldset {
+    display: inline-block;
+	margin: 1.0em 0;
+	padding: 1.0em;
+    border: 1px solid black;
+}
+
+
 
 .navigation {
     margin-left: 33px;
@@ -94,7 +193,6 @@ body {
     padding: 20px;
     margin: 33px;
     text-align: left;
-    font-size: 11px;
 }
 .footer a {
     color: #454545;
